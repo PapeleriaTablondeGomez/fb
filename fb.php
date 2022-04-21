@@ -11,9 +11,8 @@ function curl($url) {
 system("clear");
 echo "                                                                                                    
 
-                                            VERSION 1.0.0
-                                             TERMUX BYTE
-                                                                                                             
+TermuxByte2022
+
 ";
 echo "\n\n";
 echo "[#] Ingrese la URL del  Video Ej: (https://www.facebook.com/user/video/id) : ";
