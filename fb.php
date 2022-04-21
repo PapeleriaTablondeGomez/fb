@@ -10,27 +10,24 @@ function curl($url) {
 }
 system("clear");
 echo "                                                                                                    
- _____ _____    _____ _____ ____  _____ _____    ____  _____ _ _ _ _____ __    _____ _____ ____  _____ _____ 
-|   __| __  |  |  |  |     |    \|   __|     |  |    \|     | | | |   | |  |  |     |  _  |    \|   __| __  |
-|   __| __ -|  |  |  |-   -|  |  |   __|  |  |  |  |  |  |  | | | | | | |  |__|  |  |     |  |  |   __|    -|
-|__|  |_____|   \___/|_____|____/|_____|_____|  |____/|_____|_____|_|___|_____|_____|__|__|____/|_____|__|__|
-                                                VERSION 1.0.0
-                                             CREATED BY R3D#@X0r
+
+                                            VERSION 1.0.0
+                                             TERMUX BYTE
                                                                                                              
 ";
 echo "\n\n";
-echo "[#] Enter Video URL (https://www.facebook.com/user/video/id) : ";
+echo "[#] Ingrese la URL del  Video Ej: (https://www.facebook.com/user/video/id) : ";
 $v = trim(fgets(STDIN, 1024));
-echo "\n\n[#] Enter Video Name To Save As : ";
+echo "\n\n[#] Nombre para el video : ";
 $name = trim(fgets(STDIN, 1024));
 $url = str_replace('www', 'mbasic', $v);
 $s = curl($url);
 //echo $s;
 $vurl = preg_match('/<a href=\"\/video_redirect\/\?src\=(.*?)\"/ims', $s, $matches) ? $matches[1] : null;
 $vu = urldecode($vurl);
-echo "\n\n[+] Downloading... \n\n\n";
+echo "\n\n[+] Descargando... \n\n\n";
 $d = 'wget -O "' . $name . '.mp4" --user-agent="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6" "' . $vu . '" -q --show-progress';
 system($d);
-echo "\n\n[+] Done.. Saved As : " . $name . ".mp4\n\n";
+echo "\n\n[+] Listo.. Video Descargado : " . $name . ".mp4\n\n";
 exit(0);
 ?>
