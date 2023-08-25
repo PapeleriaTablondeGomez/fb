@@ -25,7 +25,7 @@ $url = str_replace('www', 'mbasic', $v);
 $s = curl($url);
 //echo $s;
 $vurl = preg_match('/<a href=\"\/video_redirect\/\?src\=(.*?)\"/ims', $s, $matches) ? $matches[1] : null;
-$vu = urldecode($vurl);
+$vu = $vurl !== null ? urldecode($vurl) : '';
 echo "\n\n[+] Descargando... \n\n\n";
 $d = 'wget -O "' . $defaultSavePath . $name . '.mp4" --user-agent="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6" "' . $vu . '" -q --show-progress';
 system($d);
