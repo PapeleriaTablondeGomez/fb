@@ -20,14 +20,12 @@ $name = trim(fgets(STDIN, 1024));
 $url = str_replace('www', 'mbasic', $v);
 $s = curl($url);
 
-$vurl = preg_match('/<a href=\"\/video_redirect\/\?src\=(.*?)\"/ims', $s, $matches) ? $matches[1] : null;
-
-if ($vurl !== null) {
-    $vu = urldecode($vurl);
+if (preg_match('/"videoData".*?"src":"(.*?)"/', $s, $matches)) {
+    $vurl = json_decode('"' . $matches[1] . '"');
     
     echo "\n\n[+] Descargando... \n\n\n";
     $saveFilePath = $defaultSavePath . $name . '.mp4';
-    $d = 'wget -O "' . $saveFilePath . '" --user-agent="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6" "' . $vu . '" -q --show-progress';
+    $d = 'wget -O "' . $saveFilePath . '" --user-agent="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6" "' . $vurl . '" -q --show-progress';
 
     system($d);
     echo "\n\n[+] Listo.. Video Descargado en: " . $saveFilePath . "\n\n";
